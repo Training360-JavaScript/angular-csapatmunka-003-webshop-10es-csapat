@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Product } from 'src/app/model/product';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/hu';
 registerLocaleData(localeFr, 'hu');
