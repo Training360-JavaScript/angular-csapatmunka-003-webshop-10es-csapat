@@ -589,7 +589,7 @@ export class ProductService {
     return new Observable((subscriber: Subscriber<Product[]>) => {
         if (searchPattern) {
             subscriber.next(this.list.filter(item => item[searchKey] === searchPattern));
-        } else {
+        } else { 
             subscriber.next(this.list);
         }
     });

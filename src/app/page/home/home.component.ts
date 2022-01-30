@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Product } from 'src/app/model/product';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   // products: any[] = [
   //   {
@@ -124,10 +127,29 @@ export class HomeComponent implements OnInit {
   // filterKey: string = 'name';
   // filterKeys: string[] = Object.keys(this.products[0]).slice(2);
 
+  constructor(
+    private productService: ProductService
+    ) {
+      this.featuredSubscribe = this.productService.getFeaturedProducts().subscribe((products: Product[]) => {
+        this.featuredProducts = products;
+      });
+      this.saleSubscribe = this.productService.getSaleProducts().subscribe((products: Product[]) => {
+        this.saleProducts = products;
+      });
+    }
+    
+  private featuredSubscribe!: Subscription;
+  private saleSubscribe!: Subscription;
 
-  constructor() { }
+  featuredProducts: Product[] = [];
+  saleProducts: Product[] = [];
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.featuredSubscribe.unsubscribe();
+    this.saleSubscribe.unsubscribe();
   }
 
 }
