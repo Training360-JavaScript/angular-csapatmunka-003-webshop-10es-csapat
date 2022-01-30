@@ -8,7 +8,10 @@ import { Cat01Component } from './page/cat01/cat01.component';
 import { Cat02Component } from './page/cat02/cat02.component';
 import { HomeComponent } from './page/home/home.component';
 import { CategoryComponent } from './page/category/category.component';
-import { ProductCardsComponent } from './common/product-cards/product-cards.component'
+import { ProductCardsComponent } from './common/product-cards/product-cards.component';
+import { ProductCardComponent } from './common/product-card/product-card.component';
+import { FilterPipe } from './pipe/filter.pipe';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,11 +20,14 @@ import { ProductCardsComponent } from './common/product-cards/product-cards.comp
     Cat02Component,
     HomeComponent,
     CategoryComponent,
-    ProductCardsComponent
+    ProductCardsComponent,
+    ProductCardComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
