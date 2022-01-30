@@ -15,24 +15,31 @@ export class CategoryComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private route: ActivatedRoute
   ) {
-    this.subscribe = this.route.params.subscribe(params => {
-      console.log(params['categoryId']);
-      this.categoryId = +params['categoryId']; // (+) converts string 'id' to a number
-      this.productService.getCategoryFeaturedProducts(this.categoryId).subscribe((products: Product[]) => { 
+    this.routeSubscribe = this.route.params.subscribe(params => {
+      this.categoryId = +params['categoryId']; // (+) converts string to a number
+      this.featuredSubscribe = this.productService.getCategoryFeaturedProducts(this.categoryId).subscribe((products: Product[]) => { 
         this.featuredProducts = products;
+      });
+      this.productSubscribe = this.productService.getCategoryProducts(this.categoryId).subscribe((products: Product[]) => {
+        this.products = products;
       });
     });
    }
 
   categoryId: number = 0;
   featuredProducts: Product[] = [];
-  private subscribe!: Subscription;
+  products: Product[] = [];
+  private routeSubscribe!: Subscription;
+  private featuredSubscribe!: Subscription;
+  private productSubscribe!: Subscription;
 
   ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
-    this.subscribe.unsubscribe();
+    this.routeSubscribe.unsubscribe();
+    this.featuredSubscribe.unsubscribe();
+    this.productSubscribe.unsubscribe();
   }
 
 }
