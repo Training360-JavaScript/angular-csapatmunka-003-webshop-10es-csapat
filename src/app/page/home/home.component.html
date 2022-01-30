@@ -1,4 +1,16 @@
-<p>home works!</p>
+<section class="home--featured-products">
+  <h3>Featured Products</h3>
+  <app-product-cards [fiveProducts]="featuredProducts">
+  </app-product-cards>
+</section>
+
+<section class="home--sale-products">
+  <h3>Products on Sale</h3>
+  <app-product-cards [fiveProducts]="saleProducts">
+  </app-product-cards>
+</section>
+
+<!-- <p>home works!</p> -->
 <!-- Search -->
 <!-- <div class="search bg-light border rounded w-100 p-3 mt-5 d-flex flex-row">
   <span class="font-weight-bold text-uppercase col-2 pt-2 ml-5">Search by:</span>
