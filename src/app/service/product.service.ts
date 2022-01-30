@@ -11,13 +11,13 @@ export class ProductService {
  private categoryList: Category[] = [
   {
     "id": 1,
-    "name": "1",
+    "name": "Processor & Video Card",
     "description": "processor & video card"
   },
 
   {
     "id": 2,
-    "name": "2",
+    "name": "Other hardwares",
     "description": "other hardwares (ram, monitor, cooler, motherboard)"
   }
  ]
@@ -596,13 +596,9 @@ export class ProductService {
   }
 
   //A fentihez hasonlóan visszaadja az összes kategóriát (nálunk 2)
-  getCategories(searchPattern: string, searchKey: string = "name"): Observable<Category[]> {
+  getCategories(): Observable<Category[]> {
     return new Observable((subscriber: Subscriber<Category[]>) => {
-        if (searchPattern) {
-            subscriber.next(this.categoryList.filter(item => item[searchKey] === searchPattern));
-        } else { 
-            subscriber.next(this.categoryList);
-        }
+        subscriber.next(this.categoryList);
     });
   }
 
@@ -612,7 +608,7 @@ export class ProductService {
         subscriber.next(this.list
             .filter((item) => item.featured)
             .sort(() => Math.random() - Math.random())
-            .slice(0, 4));
+            .slice(0, 5));
     });
   }
 
@@ -621,7 +617,7 @@ export class ProductService {
     return new Observable((subscriber: Subscriber<Product[]>) => {
         subscriber.next(this.list
             .sort(() => Math.random() - Math.random())
-            .slice(0, 4));
+            .slice(0, 5));
     });
   }
 
@@ -638,7 +634,7 @@ export class ProductService {
     return new Observable((subscriber: Subscriber<Product[]>) => {
         subscriber.next(this.list
             .filter((item) => item.catId === catId && item.featured)
-            .slice(0, 4));
+            .slice(0, 5));
     });
   }
 }
