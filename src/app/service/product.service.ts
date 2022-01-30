@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
 import { Category } from '../model/category';
 import { Product } from '../model/product';
 
@@ -10,13 +11,13 @@ export class ProductService {
  private categoryList: Category[] = [
   {
     "id": 1,
-    "name": "1",
+    "name": "Processor & Video Card",
     "description": "processor & video card"
   },
 
   {
     "id": 2,
-    "name": "2",
+    "name": "Other hardwares",
     "description": "other hardwares (ram, monitor, cooler, motherboard)"
   }
  ]
@@ -585,41 +586,57 @@ export class ProductService {
   //ha a search pattern üres (vagy null vagy undefined) akkor a teljes products-ot visszaadja
   //ha nem üres, akkor szűrjön a searchKey tulajdonság alapján
   getProducts(searchPattern: string, searchKey: string = "name"): Observable<Product[]> {
-    if(searchPattern) {
-      return this.list.filter(item => item.name === searchKey);
-    }
-    return this.list;
+    return new Observable((subscriber: Subscriber<Product[]>) => {
+        if (searchPattern) {
+            subscriber.next(this.list.filter(item => item[searchKey] === searchPattern));
+        } else {
+            subscriber.next(this.list);
+        }
+    });
   }
 
   //A fentihez hasonlóan visszaadja az összes kategóriát (nálunk 2)
-  getCategories(searchPattern: string, searchKey: string = "name"): Observable<Category[]> {
-    if(searchPattern) {
-      return this.categoryList.filter(item => item.name === searchKey);
-    }
-    return this.categoryList;
+  getCategories(): Observable<Category[]> {
+    return new Observable((subscriber: Subscriber<Category[]>) => {
+        subscriber.next(this.categoryList);
+    });
   }
 
   //Az első 5 olyan terméket adja vissza, aminél a featured true
   getFeaturedProducts(): Observable<Product[]> {
-    let listFeatured = this.list.filter(item => item.featured === true);
-    listFeatured = listFeatured.sort((a, b) => Math.random() - Math.random());
-    return listFeatured.splice(0, 5);
+    return new Observable((subscriber: Subscriber<Product[]>) => {
+        subscriber.next(this.list
+            .filter((item) => item.featured)
+            .sort(() => Math.random() - Math.random())
+            .slice(0, 5));
+    });
   }
 
   //Random 5 terméket ad vissza
   getSaleProducts(): Observable<Product[]> {
-    let saleList = this.list.sort((a, b) => Math.random() - Math.random());
-    return saleList.splice(0, 5);
+    return new Observable((subscriber: Subscriber<Product[]>) => {
+        subscriber.next(this.list
+            .sort(() => Math.random() - Math.random())
+            .slice(0, 5));
+    });
   }
 
   //catId alapján szűri a termékeket
   getCategoryProducts(catId: number): Observable<Product[]> {
-    return this.list.filter(item => item.catId === catId);
+    return new Observable((subscriber: Subscriber<Product[]>) => {
+        subscriber.next(this.list
+            .filter((item) => item.catId === catId));
+    });
   }
 
   //catId és featured alapján szűr és az első 5db-ot adja vissza
   getCategoryFeaturedProducts(catId: number): Observable<Product[]> {
-    return this.list.filter(item => item.catId === catId && item.featured).splice(0, 5);
+    return new Observable((subscriber: Subscriber<Product[]>) => {
+        subscriber.next(this.list
+            .filter((item) => item.catId === catId && item.featured)
+            .slice(0, 5));
+    });
   }
+
 }
 
