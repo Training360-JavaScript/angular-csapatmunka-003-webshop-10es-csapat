@@ -637,5 +637,6 @@ export class ProductService {
             .slice(0, 5));
     });
   }
+
 }
 

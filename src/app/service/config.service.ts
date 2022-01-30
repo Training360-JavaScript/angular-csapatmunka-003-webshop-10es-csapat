@@ -29,5 +29,5 @@ export class ConfigService {
         this.menuItems.push({ text: category.name, link: `category/${category.id}`});
       });
     });
-   }
+  }
 }
