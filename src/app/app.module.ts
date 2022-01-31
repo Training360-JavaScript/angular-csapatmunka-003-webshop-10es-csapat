@@ -13,6 +13,7 @@ import { ProductListComponent } from './common/product-list/product-list.compone
 import { ProductCardComponent } from './common/product-card/product-card.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { AdminComponent } from './page/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     ProductCardsComponent,
     ProductListComponent,
     ProductCardComponent,
-    FilterPipe
+    FilterPipe,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
