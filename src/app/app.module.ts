@@ -13,6 +13,8 @@ import { ProductListComponent } from './common/product-list/product-list.compone
 import { ProductCardComponent } from './common/product-card/product-card.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { DataEditorComponent } from './common/data-editor/data-editor.component';
+import { SorterPipe } from './pipe/sorter.pipe'
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,12 +26,14 @@ import { FormsModule } from '@angular/forms';
     ProductCardsComponent,
     ProductListComponent,
     ProductCardComponent,
-    FilterPipe
+    FilterPipe,
+    DataEditorComponent,
+    SorterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
