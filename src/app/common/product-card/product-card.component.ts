@@ -11,7 +11,7 @@ registerLocaleData(localeFr, 'hu');
 })
 export class ProductCardComponent implements OnInit {
 
-  @Input() product: Product = {}
+  @Input() product: Product = new Product()
 
   constructor() { }
 

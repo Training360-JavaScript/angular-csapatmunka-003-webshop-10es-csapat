@@ -1,15 +1,16 @@
-<div class="card m-3" style="width: 18rem;">
+<div class="card m-xl-1 mx-auto" style="max-width: 22rem;">
   <img [src]="product.image" class="card-img-top mt-2" alt="...">
   <div class="card-body flex-fill">
     <h5 class="card-title text-center">{{ product.name }}</h5>
-    <p class="card-text">{{ product.description }}</p>
+    <p class="card-text small">{{ product.description }}</p>
   </div>
   <ul class="list-group list-group-flush mt-auto">
     <li class="list-group-item">{{ product.price | currency:'HUF':'symbol':'1.0-2':'hu'}}</li>
-    <li *ngIf="product.active" class="list-group-item"><img class="active" src="/assets/image/available.png" alt="">
+    <li class="list-group-item d-flex justify-content-space-between">
+      <img *ngIf="product.active" class="active" src="/assets/image/available.png" alt="active">
+      <img *ngIf="!product.active" class="active" src="/assets/image/not_available.png" alt="not_active">
+      <img *ngIf="product.featured" class="active ml-auto" src="/assets/image/featured.png" alt="featured">
     </li>
-    <li *ngIf="!product.active" class="list-group-item"><img class="active" src="/assets/image/not_available.png"
-        alt=""></li>
-    <li class="list-group-item">Piece(s) in stock: {{ product.stock }}</li>
+    <li class="list-group-item">Piece(s) in stock: <strong>{{ product.stock }}</strong></li>
   </ul>
 </div>

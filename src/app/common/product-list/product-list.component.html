@@ -1,12 +1,19 @@
-<div class="container">
-    <div class="row">
-        <form class="form-inline col-12 my-2">
+<div class="mx-md-5">
+  <div class="row d-flex justify-content-center">
+      <div class="search bg-light border rounded w-100 p-3 mb-5 d-flex flex-md-row flex-column align-items-center">
+        <span class="font-weight-bold text-uppercase text-center col-md-2 pt-2 ml-md-5">Search by:</span>
+        <select class="form-control border col-3" [(ngModel)]="filterKey">
+          <option *ngFor="let key of filterKeys" [value]="[key]">{{key}}</option>
+        </select>
+        <input [(ngModel)]="phrase" class="filter-search border rounded col-5 mx-3" type="text" placeholder="Search...">
+      </div>
+        <!-- <form class="form-inline col-12 my-2">
             <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search">
             <button class="btn btn-primary">
                 <i class="fa fa-eye"></i>
             </button>
-        </form>
-        <div *ngFor="let product of products | filter:phrase" class="col-12 col-md-6 col-lg-2">
+        </form> -->
+        <div *ngFor="let product of products | filter:phrase:filterKey" class=" col-12 col-md-6 col-xl-2">
             <app-product-card [product]="product"></app-product-card>
         </div>
     </div>
