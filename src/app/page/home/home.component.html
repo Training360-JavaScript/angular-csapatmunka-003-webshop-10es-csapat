@@ -1,1 +1,11 @@
-<p>home works!</p>
+<section class="home--featured-products">
+  <h1 class="text-center mb-3">Featured Products</h1>
+  <app-product-cards [fiveProducts]="featuredProducts">
+  </app-product-cards>
+</section>
+
+<section class="home--sale-products">
+  <h1 class="text-center mb-3">Products on Sale</h1>
+  <app-product-cards [fiveProducts]="saleProducts">
+  </app-product-cards>
+</section>
