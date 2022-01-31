@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-12">
+    <input type="number" min="1" max="1000" [(ngModel)]="productId">
+    <button (click)="getProduct()">Get Product</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-5">Id:</div>
+  <div class="col-7">{{product.id}}</div>
+</div>
+
+<div class="row">
+  <div class="col-5">Name</div>
+  <div class="col-7"><input [(ngModel)]="product.name"></div>
+</div>
+
+<div class="row">
+  <div class="col-5">Description</div>
+  <div class="col-7">{{product.description}}</div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <button (click)="onUpdate()">Update</button>
+    <button (click)="onDelete()">Delete</button>
+    <button (click)="onCreate()">Create</button>
+  </div>
+</div>

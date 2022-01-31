@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -13,6 +12,8 @@ import { ProductListComponent } from './common/product-list/product-list.compone
 import { ProductCardComponent } from './common/product-card/product-card.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { TestComponent } from './page/test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,12 +25,14 @@ import { FormsModule } from '@angular/forms';
     ProductCardsComponent,
     ProductListComponent,
     ProductCardComponent,
-    FilterPipe
+    FilterPipe,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
