@@ -14,6 +14,8 @@ import { FilterPipe } from './pipe/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './page/test/test.component';
+import { DataEditorComponent } from './common/data-editor/data-editor.component';
+import { SorterPipe } from './pipe/sorter.pipe'
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { TestComponent } from './page/test/test.component';
     ProductListComponent,
     ProductCardComponent,
     FilterPipe,
-    TestComponent
+    TestComponent,
+    DataEditorComponent,
+    SorterPipe,
   ],
   imports: [
     BrowserModule,
