@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -16,7 +17,8 @@ export class TestComponent implements OnInit {
 
   productId: number = 0;
   product: Product = new Product();
-
+  categories: Category[] = [];
+  
   getProduct() {
     this.productService.getProduct(this.productId).subscribe((product) => {
       this.product = product;
@@ -39,6 +41,9 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.productService.getCategories().subscribe(cats => {
+      this.categories = cats;
+    });
   }
 
 }

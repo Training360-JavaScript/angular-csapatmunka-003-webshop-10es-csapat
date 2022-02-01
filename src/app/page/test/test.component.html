@@ -27,3 +27,100 @@
     <button (click)="onCreate()">Create</button>
   </div>
 </div>
+
+
+<div class="row mt-5">
+  <div class="col-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th rowspan="2" class="extra_thin" style="vertical-align: middle;">
+            <div class="th_center">
+              <span>#</span>
+            </div>
+          </th>
+
+          <th>
+            <div class="th_center">
+              <span>Category</span>
+            </div>
+          </th>
+
+          <th>
+            <div class="th_center">
+              <span>Description</span>
+            </div>
+          </th>
+
+          <th class="thin">
+            <div class="th_center">
+              <span>Price (Ft)</span>
+            </div>
+          </th>
+
+          <th class="extra_thin">
+            <div class="th_center">
+              <span>Active</span>
+            </div>
+          </th>
+
+          <th class="thin" rowspan="2"></th>
+
+        </tr>
+        <tr>
+          <th>
+            <div class="th_center">
+              <span>Name</span>
+            </div>            </th>
+
+          <th>
+            <div class="th_center">
+              <span>Image</span>
+            </div>
+          </th>
+
+          <th class="thin">
+            <div class="th_center">
+              <span>Stock</span>
+            </div>
+          </th>
+
+          <th class="extra_thin">
+            <div class="th_center">
+              <span>Featured</span>
+            </div>
+          </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2" style="vertical-align: middle;"><input class="extra_thin" [(ngModel)]="product.id" type="text" disabled></td>
+          <td>
+            <select class="form-control" [(ngModel)]="product.catId">
+              <option *ngFor="let category of categories" [value]="category.id">{{ category.name}}</option>
+            </select>
+          </td>
+          <td><input class="form-control" [(ngModel)]="product.description" type="text"></td>
+          <td><input class="form-control thin" [(ngModel)]="product.price" type="number"></td>
+          <td><input class="form-control" [(ngModel)]="product.active" type="checkbox"></td>
+          <td rowspan="2" style="vertical-align: middle;">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button class="btn btn-info"><i class="fa fa-save" aria-hidden="true"></i></button>
+              <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              <button class="btn btn-warning"><i class="fa fa-undo" aria-hidden="true"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><input class="form-control" [(ngModel)]="product.name" type="text"></td>
+          <td><input class="form-control" [(ngModel)]="product.image" type="text"></td>
+          <td><input class="form-control thin" [(ngModel)]="product.stock" type="number"></td>
+          <td><input class="form-control" [(ngModel)]="product.featured" type="checkbox"></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
