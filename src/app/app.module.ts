@@ -16,7 +16,8 @@ import { AdminComponent } from './page/admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './page/test/test.component';
 import { DataEditorComponent } from './common/data-editor/data-editor.component';
-import { SorterPipe } from './pipe/sorter.pipe'
+import { SorterPipe } from './pipe/sorter.pipe';
+import { AddProductComponent } from './page/add-product/add-product.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { SorterPipe } from './pipe/sorter.pipe'
     TestComponent,
     DataEditorComponent,
     SorterPipe,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
