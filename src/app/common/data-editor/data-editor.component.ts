@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -20,12 +21,17 @@ export class DataEditorComponent implements OnInit {
   filterKey: string = 'name';
   filterKeys: string[] = ['name', 'description', 'price', 'active', 'featured'];
 
+  categories: Category[] = [];
+  
   constructor(
     private productService: ProductService,
     private router: Router,
   ) {  }
 
   ngOnInit(): void {
+    this.productService.getCategories().subscribe(cats => {
+      this.categories = cats;
+    });
   }
 
   onCancel(product: Product): void {
