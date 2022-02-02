@@ -41,13 +41,15 @@ export class DataEditorComponent implements OnInit {
   onSave(product: Product): void {
     this.productService.updateProduct(product).subscribe(
       product => this.router.navigate(['/', 'product'])
-      )
-      this.products$ = this.productService.getAll();
+    );
+    //this.products$ = this.productService.getAll();
   }
 
   onDelete(product: Product): void {
-    this.productService.deleteProduct(product.id)
-    this.router.navigate(['/', 'product'])
+    this.productService.deleteProduct(product.id).subscribe(
+      pr => this.router.navigate(['/', 'product'])
+    );
+    
   }
 
   onSort(key: string): void {
