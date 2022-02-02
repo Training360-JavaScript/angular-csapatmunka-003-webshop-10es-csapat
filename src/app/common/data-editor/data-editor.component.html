@@ -4,6 +4,13 @@
       <button routerLink="/add-product" class="btn btn-light btn-block btn-lg">Új termék felvétele
       <i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
+    <div class="search bg-light border rounded w-100 p-3 my-5 d-flex flex-md-row flex-column align-items-center">
+      <span class="font-weight-bold text-uppercase text-center col-md-2 pt-2 ml-md-5">Search by:</span>
+      <select class="form-control border col-3" [(ngModel)]="filterKey">
+        <option *ngFor="let key of filterKeys" [value]="[key]">{{key}}</option>
+      </select>
+      <input [(ngModel)]="phrase" class="filter-search border rounded col-5 mx-3" type="text" placeholder="Search...">
+    </div>
     <div class="col-10 offset-1">
       <table class="table table-strpied">
         <thead>
@@ -84,7 +91,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products$ | async | sorter:sorterKey:sorterDirection">
+          <tr *ngFor="let product of products$ | async | filter:phrase:filterKey | sorter:sorterKey:sorterDirection">
             <td class="extra_thin"><input class="extra_thin" [(ngModel)]="product.id" type="text" disabled></td>
             <td class="thin"><input class="thin" [(ngModel)]="product.catId" type="text"></td>
             <td><input [(ngModel)]="product.name" type="text"></td>
@@ -95,7 +102,7 @@
             <td class="thin"><input class="thin" [(ngModel)]="product.active" type="text"></td>
             <td class="thin"><input class="thin" [(ngModel)]="product.featured" type="text"></td>
             <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="btn-group" role="group">
                 <button (click)="onSave(product)" type="button" class="btn btn-info"><i class="fa fa-save"
                     aria-hidden="true"></i></button>
                 <button (click)="onDelete(product)" type="button" class="btn btn-danger"><i class="fa fa-trash"

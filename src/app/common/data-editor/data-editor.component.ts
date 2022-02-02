@@ -16,6 +16,10 @@ export class DataEditorComponent implements OnInit {
   sorterKey: string = 'id';
   sorterDirection: number = 1;
 
+  phrase: string = '';
+  filterKey: string = 'name';
+  filterKeys: string[] = ['name', 'description', 'price', 'active', 'featured'];
+
   constructor(
     private productService: ProductService,
     private router: Router,
