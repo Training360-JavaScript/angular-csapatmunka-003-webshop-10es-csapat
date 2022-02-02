@@ -1,0 +1,127 @@
+<div class="">
+  <div class="row">
+    <div class="col-12">
+      <div class="mx-auto">
+        <button routerLink="/add-product" class="btn btn-light btn-block btn-lg">Új termék felvétele
+        <i class="fa fa-plus" aria-hidden="true"></i></button>
+      </div>
+      <div class="search bg-light border rounded w-100 p-3 my-5 d-flex flex-md-row flex-column align-items-center">
+        <span class="font-weight-bold text-uppercase text-center col-md-2 pt-2 ml-md-5">Search by:</span>
+        <select class="form-control border col-3" [(ngModel)]="filterKey">
+          <option *ngFor="let key of filterKeys" [value]="[key]">{{key}}</option>
+        </select>
+        <input [(ngModel)]="phrase" class="filter-search border rounded col-5 mx-3" type="text" placeholder="Search...">
+      </div>
+
+      <table class="table table-strpied">
+        <thead>
+          <tr>
+            <th class="extra_thin" (click)="onSort('id')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'id' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+                <i *ngIf="sorterKey === 'id' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+                <span>#</span>
+              </div>
+            </th>
+
+            <th class="thin" (click)="onSort('catId')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'catId' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+                <i *ngIf="sorterKey === 'catId' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+                <span>Category</span>
+              </div>
+            </th>
+
+            <th (click)="onSort('name')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'name' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2 mr-2"></i>
+                <i *ngIf="sorterKey === 'name' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2 mr-2"></i>
+                <span>Name</span>
+              </div>            </th>
+
+            <th (click)="onSort('desciption')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'desciption' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+                <i *ngIf="sorterKey === 'desciption' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+                <span>Description</span>
+              </div>
+            </th>
+
+            <th class="thin" (click)="onSort('price')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'price' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+                <i *ngIf="sorterKey === 'price' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+                <span>Price (Ft)</span>
+              </div>
+            </th>
+
+            <th (click)="onSort('image')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'image' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+                <i *ngIf="sorterKey === 'image' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+                <span>Image</span>
+              </div>
+            </th>
+
+            <th class="thin" (click)="onSort('stock')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'stock' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+                <i *ngIf="sorterKey === 'stock' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+                <span>Stock</span>
+              </div>
+            </th>
+
+            <th class="thin" (click)="onSort('active')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'active' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+                <i *ngIf="sorterKey === 'active' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+                <span>Active</span>
+              </div>
+            </th>
+
+            <th class="thin" (click)="onSort('featured')">
+              <div class="th_center">
+                <i *ngIf="sorterKey === 'featured' && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+                <i *ngIf="sorterKey === 'featured' && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+                <span>Featured</span>
+              </div>
+            </th>
+
+            <th></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products$ | async | filter:phrase:filterKey | sorter:sorterKey:sorterDirection">
+            <td class="extra_thin">
+              <input class="extra_thin form-control form-control-sm form-control-plaintext text-right" [(ngModel)]="product.id" type="text" readonly>
+            </td>
+            <td class="thin">
+              <select class="thin form-control form-control-sm" [(ngModel)]="product.catId">
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name}}</option>
+              </select>
+            </td>
+            <td><input [(ngModel)]="product.name" class="form-control form-control-sm" type="text"></td>
+            <td><input [(ngModel)]="product.description" class="form-control form-control-sm" type="text"></td>
+            <td class="thin"><input class="thin form-control form-control-sm" [(ngModel)]="product.price" type="number"></td>
+            <td><input [(ngModel)]="product.image" class="form-control form-control-sm" type="text"></td>
+            <td class="thin"><input class="thin form-control form-control-sm" [(ngModel)]="product.stock" type="number"></td>
+            <td class="thin"><input class="thin form-control form-control-sm" [(ngModel)]="product.active" type="checkbox"></td>
+            <td class="thin"><input class="thin form-control form-control-sm" [(ngModel)]="product.featured" type="checkbox"></td>
+            <td>
+              <div class="btn-group" role="group">
+                <button (click)="onSave(product)" type="button" class="btn btn-info btn-sm"><i class="fa fa-save"
+                    aria-hidden="true"></i></button>
+                <button (click)="onDelete(product)" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"
+                    aria-hidden="true"></i></button>
+                <button (click)="onCancel(product)" type="button" class="btn btn-warning btn-sm"><i class="fa fa-undo"
+                    aria-hidden="true"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -22,6 +22,7 @@ export class ConfigService {
   ) {
     this.menuItems = [
       {text: 'Home', link: '/', icon: 'home'},
+      {text: 'Admin', link: 'admin'}
     ];
 
     this.productService.getCategories().subscribe((categories: Category[]) => {

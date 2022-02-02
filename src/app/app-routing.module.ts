@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddProductComponent } from './page/add-product/add-product.component';
+import { AdminComponent } from './page/admin/admin.component';
 import { Cat01Component } from './page/cat01/cat01.component';
 import { Cat02Component } from './page/cat02/cat02.component';
 import { CategoryComponent } from './page/category/category.component';
 import { HomeComponent } from './page/home/home.component';
+import { TestComponent } from './page/test/test.component';
 
 const routes: Routes = [
   {
@@ -21,6 +24,18 @@ const routes: Routes = [
   {
     path: 'category/:categoryId',
     component: CategoryComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+  },
+  {
+    path: 'add-product',
+    component: AddProductComponent,
+  },
+  {
+    path: 'test',
+    component: TestComponent,
   },
   {
     path: '**',
